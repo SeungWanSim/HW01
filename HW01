@@ -1,33 +1,53 @@
-#include <iostream>
+/*
+- 사용자로부터 5개의 숫자를 입력 받습니다.
+- 입력 받은 숫자를 배열에 저장합니다.
+- 배열에 저장된 숫자들의 합계와 평균을 계산합니다.
+- 계산된 합계와 평균을 출력합니다.
+- 배열을 인자로 넘겨 받아서 배열 원소들의 합계를 반환하는 함수를 구현해봅니다.
+- 배열을 인자로 넘겨 받아서 배열 원소들의 평균을 반환하는 함수를 구현해봅니다.
+- 위에서 만든 합계 함수와 평균 함수를 호출하여 합계와 평균을 출력합니다.
+도전과제
+- 정렬은 오름차순 정렬과 내림차순 정렬이 가능해야 합니다.
+- 숫자 1을 입력 받으면 오름차순 정렬, 숫자 2를 입력 받으면 내림차순 정렬을 하도록 구현해주세요.
+- `algorithm` 헤더의 `sort` 함수를 사용하지 않고 직접 구현해보세요.
+- 오름차순 정렬과 내림차순 정렬 동작을 각각 함수로 구현해보세요.*/
+#include<iostream>
 using namespace std;
 
 double totsum(double arr[], int size)
 {
-    double tot = 0;
-    for (int i = 0; i < size; i++) {
-        tot += arr[i];
-    }
-    return tot;
+	double tot = 0;
+	for (int i = 0; i < size; i++)
+	{
+		tot += arr[i];
+	}
+	return tot;
 }
-double totavg(double arr[], int size) {
-    double avg = 0;
-    avg = totsum(arr, size) / size;
-    return avg;
+double totavg(double arr[], int size)
+{
+	double avg = 0;
+	for (int i = 0; i < size; i++)
+	{
+		avg += arr[i];
+	}
+	return avg/size;
 }
+
 
 int main() {
-    int size = 5;
-    double student[5];
+	int size = 5;
+	double student[5];
+	
+	for (int i = 0; i < size; i++) {
+		cout << i + 1 << "번째 학생의 점수: ";
+		cin >> student[i];
+	}
+	double tot = totsum(student, size);
+	double avg = totavg(student, size);
 
-    for (int i = 0; i < size; i++) {
-        cout << i + 1 << "번째 학생 점수 : ";
-        cin >> student[i];
-    }
-    double tot = totsum(student, size);
-    double avg = totavg(student, size);
+	cout << "총점 : " << totsum(student, size);
+	cout << "\n평균 : " << totavg(student, size);
 
-    cout << "총점 : " << totsum(student, size);
-    cout << "평균 : " << totavg(student, size);
 
-    return 0;
+	return 0;
 }

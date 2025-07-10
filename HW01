@@ -14,40 +14,92 @@
 #include<iostream>
 using namespace std;
 
-double totsum(double arr[], int size)
+void printArray(int numbers[],int size)
 {
-	double tot = 0;
 	for (int i = 0; i < size; i++)
 	{
-		tot += arr[i];
+		cout << numbers[i] << " ";
 	}
-	return tot;
 }
-double totavg(double arr[], int size)
+int getSum(int numbers[], int size)
 {
-	double avg = 0;
+	int sum = 0;
 	for (int i = 0; i < size; i++)
 	{
-		avg += arr[i];
+		sum += numbers[i];
+		
 	}
-	return avg/size;
+	return sum;
 }
 
+int getAvg(int numbers[], int size)
+{
+	int avg = 0;
+	avg = getSum(numbers, size) / size;
+	return avg;
+}
+void sortAsc(int numbers[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size - i - 1; j++)
+		{
+			if (numbers[j] > numbers[j + 1])
+			{
+				int temp = numbers[j];
+				numbers[j] = numbers[j + 1];
+				numbers[j + 1] = temp;
+			}
+		}
+	}
+}
+void sorta(int numbers[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size - i - 1; j++)
+		{
+			if (numbers[j] < numbers[j + 1])
+			{
+				int temp = numbers[j];
+				numbers[j] = numbers[j + 1];
+				numbers[j + 1] = temp;
+			}
+		}
+	}
+}
+int main()
+{
+	int numbers[5];
+	const int size = 5;
+	int shortChoice;
 
-int main() {
-	int size = 5;
-	double student[5];
+	for (int i = 0; i < size; i++)
+	{
+		cout << i + 1 << "번쨰 숫자 입력";
+		cin >> numbers[i];
+	}
+	printArray(numbers, size);
+	cout << "총합:" << getSum(numbers, size);
+	cout << "평균:" << getAvg(numbers, size);
+
+	cout << "1번=오름차순,2번=내림차순:";
+	cin >> shortChoice;
+
+	if (shortChoice == 1)
+	{
+		sortAsc(numbers, size);
+	}
+	else if (shortChoice == 2)
+	{
+		sorta(numbers, size);
+	}
+	else
+	{
+		cout << "1,2중에 택하시오" << endl;
+	}
 	
-	for (int i = 0; i < size; i++) {
-		cout << i + 1 << "번째 학생의 점수: ";
-		cin >> student[i];
-	}
-	double tot = totsum(student, size);
-	double avg = totavg(student, size);
 
-	cout << "총점 : " << totsum(student, size);
-	cout << "\n평균 : " << totavg(student, size);
-
-
+	printArray(numbers, size);
 	return 0;
 }
